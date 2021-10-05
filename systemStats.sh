@@ -31,7 +31,7 @@ fi
 # Frequently scripts are written so that arguments can be passed in any order using 'flags'.
 # With the flags method some of the arguments can be made mandatory.
 # E.G. with a:b (a is mandatory and b is optional). With abc (a,b, and c, are all optional).
-while getopts tiv OPTION
+while getopts vit OPTION
 do
 case ${OPTION}
 in
