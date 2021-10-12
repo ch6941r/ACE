@@ -1,11 +1,11 @@
 #! /usr/bin
 # CREATED BY: Chris Halsall
 # DATE CREATED: 05/10/2021
-# VERSION: V0.1
+# VERSION: V0.2
 
 # This script is designed to gather system statistics.
 AUTHOR="C.Halsall"
-VERSION="V0.1"
+VERSION="V0.2"
 RELEASED="2021-10-05"
 
 # Display help message.
