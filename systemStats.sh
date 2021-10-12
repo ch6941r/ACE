@@ -1,12 +1,12 @@
-#! /usr/bin
 # CREATED BY: Chris Halsall
 # DATE CREATED: 05/10/2021
 # VERSION: V0.2
 
 # This script is designed to gather system statistics.
 AUTHOR="C.Halsall"
-VERSION="V0.2"
+VERSION="V0.3"
 RELEASED="2021-10-05"
+FILE=~/ACE/systemstats.log
 
 # Display help message.
 USAGE(){
@@ -37,8 +37,8 @@ case ${OPTION}
 in
 c) USAGE=$(grep -w 'cpu' /proc/stat | awk '{usage=($2+$3+$4+$6+$7+$8)*100/($2+$3+$4+$5+$6+$7+$8)}
 					   {free=($5)*100/($2+$3+$4+$5+$6+$7+$8)} 
-					   END {printf "Used CPU: %.2f%%\n",usage}
-					       {printf "Free CPU: %.2f%%\n",free}')
+					   END {printf "  Used CPU: %.2f%%",usage}
+					       {printf "Free CPU: %.2f%%",free}')
 	echo ${USAGE};;
 i) IP=$(ifconfig wlan0 | grep -w inet | awk '{print$2}')
 	echo ${IP};;
@@ -48,5 +48,9 @@ t) TEMP=$(cat /sys/class/thermal/thermal_zone0/temp)
 #t) TEMP=$(cat /sys/class/thermal/thermal_zone0/temp)
 esac
 done
+
+# Generate System Log
+NOW=$(date +%Y-%m-%dT%H:%M:%SZ)
+echo -e ${NOW} "IP: ${IP}\t\tTemp: ${TEMP}\tUsage: ${USAGE}" >> ${FILE}
 
 # End of Script
